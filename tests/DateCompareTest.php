@@ -13,6 +13,13 @@ class DateCompareTest extends TestCase
         $this->assertSame(5, $check->getDaysInterval(), 'getDaysInterval');
     }
 
+    public function testGetSecondsInterval()
+    {
+        $check = new DateCompare('2020-07-10 15:00:00', '2020-07-10 15:00:25');
+
+        $this->assertSame(25, $check->getSecondsInterval(), 'getSecondsInterval');
+    }
+
     public function testGetIntervalStatus()
     {
         $check = new DateCompare('2020-07-10', '2020-07-05');

@@ -13,19 +13,49 @@ class DateCompare
 
     public function __construct(string $firstDate, string $secondDate = 'now')
     {
-        $this->firstDate = new \DateTime($firstDate);
-        $this->secondDate = new \DateTime($secondDate);
+        try {
+            $this->firstDate = new \DateTime($firstDate);
+        } catch (\Exception $e) {
+            echo 'Error parsing first date' . PHP_EOL;
+
+        }
+
+        try {
+            $this->secondDate = new \DateTime($secondDate);
+        } catch (\Exception $e) {
+            echo 'Error parsing second date' . PHP_EOL;
+        }
 
         $this->interval = $this->secondDate->diff($this->firstDate);
     }
 
+    /**
+     * get days interval between dates
+     * @return int
+     */
     public function getDaysInterval(): int
     {
         return $this->interval->days;
     }
 
     /**
-     * true if firstDate more secondDate/currentDate
+     * get seconds interval between dates
+     * @return int
+     */
+    public function getSecondsInterval(): int
+    {
+        $seconds = 0;
+        $seconds += $this->interval->days * 24 * 60 * 60;
+        $seconds += $this->interval->h * 60 * 60;
+        $seconds += $this->interval->i * 60;
+        $seconds += $this->interval->s;
+
+        return $seconds;
+    }
+
+    /**
+     * check if the firstDate has already come relative secondDate
+     * true if firstDate more secondDate/currentDate or equal
      * @return bool
      */
     public function getIntervalStatus(): bool

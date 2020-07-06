@@ -2,7 +2,7 @@
 namespace tests\dateCompareTest;
 
 use \PHPUnit\Framework\TestCase;
-use \src\DateCompare;
+use Linchaker\DateCompare;
 
 class DateCompareTest extends TestCase
 {

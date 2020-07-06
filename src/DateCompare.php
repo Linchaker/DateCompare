@@ -17,6 +17,8 @@ class DateCompare
             $this->firstDate = new \DateTime($firstDate);
         } catch (\Exception $e) {
             echo 'Error parsing first date' . PHP_EOL;
+            echo 'File: ' . $e->getFile(). PHP_EOL;
+            echo 'Line: ' . $e->getLine(). PHP_EOL;
 
         }
 
@@ -24,6 +26,8 @@ class DateCompare
             $this->secondDate = new \DateTime($secondDate);
         } catch (\Exception $e) {
             echo 'Error parsing second date' . PHP_EOL;
+            echo 'File: ' . $e->getFile(). PHP_EOL;
+            echo 'Line: ' . $e->getLine(). PHP_EOL;
         }
 
         $this->interval = $this->secondDate->diff($this->firstDate);
